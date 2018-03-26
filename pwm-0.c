@@ -26,14 +26,7 @@ Timer_A_PWMConfig pwmConfig_grn = {
         GRN_DUTY_CYCLE
 };
 
-Timer_A_PWMConfig pwmConfig_blu = {
-        TIMER_A_CLOCKSOURCE_SMCLK,
-        TIMER_A_CLOCKSOURCE_DIVIDER_1,    // 3 MHz
-        PWM_PERIOD_IN_CYLCLES,
-        TIMER_A_CAPTURECOMPARE_REGISTER_1,
-        TIMER_A_OUTPUTMODE_RESET_SET,
-        BLU_DUTY_CYCLE
-};
+
 
 void initPWM()
 {
@@ -53,13 +46,7 @@ void initPWM()
             GPIO_PIN4,
             GPIO_PRIMARY_MODULE_FUNCTION);
 
-    // BLUE LED
-    GPIO_setAsOutputPin    (GPIO_PORT_P5,    GPIO_PIN6);
-    GPIO_setOutputLowOnPin (GPIO_PORT_P5,    GPIO_PIN6);
-    GPIO_setAsPeripheralModuleFunctionOutputPin(
-            GPIO_PORT_P5,
-            GPIO_PIN6,
-            GPIO_PRIMARY_MODULE_FUNCTION);
+    
 }
 
 int main(void) {
@@ -70,7 +57,7 @@ int main(void) {
 
   Timer_A_generatePWM(TIMER_A0_BASE, &pwmConfig_red);
   Timer_A_generatePWM(TIMER_A0_BASE, &pwmConfig_grn);
-  Timer_A_generatePWM(TIMER_A2_BASE, &pwmConfig_blu);
+ 
 
   while (1) ;
 
